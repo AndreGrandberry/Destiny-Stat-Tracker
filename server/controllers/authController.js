@@ -17,9 +17,9 @@ const BUNGIE_API_KEY = process.env.BUNGIE_API_KEY;
 export const handleOAuthCallback = async (req, res, next) => {
     try {
         
-        console.log('Client Id: ', OAUTH_CLIENT_ID);
-        console.log('Client Secret: ', OAUTH_CLIENT_SECRET);
-        console.log('Bungie API Key', BUNGIE_API_KEY);
+        console.log('Client Id: ', process.env.OAUTH_CLIENT_ID);
+        console.log('Client Secret: ', process.env.OAUTH_CLIENT_SECRET);
+        console.log('Bungie API Key', process.env.BUNGIE_API_KEY);
         console.log('Auth flow initiated');
         const { code } = req.query; // Receive the authorization code from the query params
         console.log('Authorization code received:', code);
@@ -30,11 +30,11 @@ export const handleOAuthCallback = async (req, res, next) => {
         
         const tokenEndpoint = `${API_ROOT_PATH}/App/Oauth/Token/`; 
 
-        const basicAuth = Buffer.from(`${OAUTH_CLIENT_ID}:${OAUTH_CLIENT_SECRET}`).toString('base64'); // Exchange access code for and access token
+        const basicAuth = Buffer.from(`${process.env.OAUTH_CLIENT_ID}:${process.env.OAUTH_CLIENT_SECRET}`).toString('base64'); // Exchange access code for and access token
         console.log('Client ID: ', OAUTH_CLIENT_ID)
         console.log('Client Secret: ', OAUTH_CLIENT_SECRET)
         const tokenResponse = await axios.post(tokenEndpoint,
-            `grant_type=authorization_code&code=${code}&client_id=${OAUTH_CLIENT_ID}&client_secret=${OAUTH_CLIENT_SECRET}&redirect_uri=https://destiny-stat-tracker.com/auth/callback`,
+            `grant_type=authorization_code&code=${code}&client_id=${process.env.OAUTH_CLIENT_ID}&client_secret=${process.env.OAUTH_CLIENT_SECRET}&redirect_uri=https://destiny-stat-tracker.com/auth/callback`,
             {
             
                 headers:{
