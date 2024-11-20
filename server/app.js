@@ -22,21 +22,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const URL = process.env.URL;
+const uri = process.env.MONGODB_URI;
 
 // MongoDB Connection
-const connectDB = async () => {
-    try {
-      // Connect to MongoDB
-      await mongoose.connect(process.env.MONGODB_URI);
-      console.log('MongoDB connected');
-    } catch (error) {
-      console.error('MongoDB connection error:', error.message);
-      process.exit(1); // Exit the process if connection fails
-    }
-  };
-  
-  // Call the function to connect to MongoDB
-  connectDB();
+mongoose.connect(uri)
+  .then(() => console.log('Connected to MongoDB Atlas'))
+  .catch((err) => console.log('Error connecting to MongoDB Atlas', err));
+
 
 // Configure the Redis client
 let client;

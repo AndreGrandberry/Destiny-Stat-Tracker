@@ -4,7 +4,7 @@ import { fetchAllMetricsProgress } from "./progressController.js";
 export const getMetricsWithProgress = async (membershipType, membershipId, accessToken) => {
   try {
     // Step 1: Fetch metrics data from the database
-    const metricsData = await Metric.findOne();
+    const metricsData = await Metric.findOne().maxTimeMS(20000);
     if (!metricsData) {
       throw new Error("No metrics data found in the database.");
     }
