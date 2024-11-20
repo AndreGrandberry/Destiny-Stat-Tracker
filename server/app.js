@@ -101,4 +101,4 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
-export default { app, client };
+export { app, client };
