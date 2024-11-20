@@ -7,6 +7,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import AppError from './AppError.js';
+import mongoose from 'mongoose';
 
 import auth from './routes/auth.js';
 import api from './routes/api.js';
@@ -21,6 +22,21 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const URL = process.env.URL;
+
+// MongoDB Connection
+const connectDB = async () => {
+    try {
+      // Connect to MongoDB
+      await mongoose.connect(process.env.MONGO_URI);
+      console.log('MongoDB connected');
+    } catch (error) {
+      console.error('MongoDB connection error:', error.message);
+      process.exit(1); // Exit the process if connection fails
+    }
+  };
+  
+  // Call the function to connect to MongoDB
+  connectDB();
 
 // Configure the Redis client
 let client;
