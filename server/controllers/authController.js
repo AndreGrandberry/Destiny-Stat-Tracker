@@ -16,6 +16,9 @@ const BUNGIE_API_KEY = process.env.BUNGIE_API_KEY;
 export const handleOAuthCallback = async (req, res) => {
     try {
         
+        console.log('Client Id: ', OAUTH_CLIENT_ID);
+        console.log('Client Secret: ', OAUTH_CLIENT_SECRET);
+        console.log('Bungie API Key', BUNGIE_API_KEY);
         console.log('Auth flow initiated');
         const { code } = req.query; // Receive the authorization code from the query params
         console.log('Authorization code received:', code);
