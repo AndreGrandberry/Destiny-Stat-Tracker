@@ -10,7 +10,7 @@ dotenv.config({ path: '../../.env' });
 const API_ROOT_PATH = 'https://www.bungie.net/Platform' 
 const OAUTH_CLIENT_ID = process.env.OAUTH_CLIENT_ID;
 const OAUTH_CLIENT_SECRET = process.env.OAUTH_CLIENT_SECRET;
-const BUNGIE_API_KEY = process.env.BUNGIE_API_KEY;
+
 
 
 // function to handle the OAuth flow
@@ -58,7 +58,7 @@ export const handleOAuthCallback = async (req, res, next) => {
         const userResponse = await axios.get(userEndpoint, {
             headers: {
                 'Authorization': `Bearer ${access_token}`,
-                'X-API-KEY': BUNGIE_API_KEY,
+                'X-API-KEY': process.env.BUNGIE_API_KEY,
                 
             },
         });
@@ -87,7 +87,7 @@ export const handleOAuthCallback = async (req, res, next) => {
       
         
 
-        res.redirect(`http://localhost:8080/api`); // Redirect to route that handles fetching and storing API information
+        res.redirect(`https://destiny-stat-tracker.com/api`); // Redirect to route that handles fetching and storing API information
     } catch (error) {
         console.log(error)
         next(new AppError('OAuth Callback Failed', 500))
