@@ -8,7 +8,7 @@ const router = express.Router();
 
 // This acts as the redirect URI. When using a redirectURI with BUNGIE, the connetion MUST BE SECURE.
 // For this we make use of ngrok for our URLS.
-router.get('/callback', handleOAuthCallback);
+router.get('/callback', (req, res, next) => handleOAuthCallback(req, res, next));
 
 export default router
   
