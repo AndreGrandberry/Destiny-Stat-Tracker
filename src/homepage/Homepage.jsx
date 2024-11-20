@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Homepage.css";
 
 
 // Component for the Homepage
 const Homepage = () => {
   console.log('Client ID from frontend:', import.meta.env.VITE_OAUTH_CLIENT_ID);
+  const navigate = useNavigate();
+
+  const handleDemoClick = () => {
+    navigate('/demo'); // Navigate to the /demo page
+  };
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -37,6 +43,23 @@ const Homepage = () => {
         {loading ? 'Loading...' : 'Log in with your Bungie.net account'}
       </button>
       {error && <p className="homepage-error">Error: {error}</p>}
+
+      <p className="github-link">
+        Got any feedback? Here's a link to the <a href="https://github.com/AndreGrandberry/Destiny-Stat-Tracker" target="_blank" rel="noopener noreferrer">GitHub Repo</a>.
+      </p>
+
+      <p className="demo-info-text">
+        Don't have a Destiny 2 Account? <br />
+        View the demo page to see an example of a player's stats.
+      </p>
+
+      {/* Demo button with container for positioning */}
+      <div className="demo-button-container">
+        <button className="homepage-button" onClick={handleDemoClick}>
+          View Demo
+        </button>
+      </div>
+
     </div>
   );
 };

@@ -1,0 +1,144 @@
+body {
+    background: linear-gradient(135deg, #001f3f, #052c4f, #0c395f, #13476f, #1a557f);
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    height: 100%; /* Ensure full height of the page */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the top */
+    align-items: center;
+    padding: 0; /* Ensure no extra padding is interfering with layout */
+}
+
+.demo-page-container {
+    width: 100%;
+    min-height: 100vh; /* Ensure the container takes up full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px; /* Add space at the top to avoid cutting off text */
+    text-align: center; /* Ensure text is centered horizontally */
+}
+
+.demo-page-title {body {
+    background: linear-gradient(135deg, #001f3f, #052c4f, #0c395f, #13476f, #1a557f);
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    height: 100%; /* Ensure full height of the page */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the top */
+    align-items: center;
+    padding: 0; /* Ensure no extra padding is interfering with layout */
+}
+
+.demo-page-container {
+    width: 100%;
+    min-height: 100vh; /* Ensure the container takes up full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px; /* Add space at the top to avoid cutting off text */
+    text-align: center; /* Ensure text is centered horizontally */
+}
+
+.demo-page-title {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 20px; /* Space between title and content */
+    text-align: center; /* Center title */
+}
+
+.demo-page-section {
+    background-color: rgba(0, 0, 0, 0.5); /* Dark translucent background */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    width: 80%;
+    max-width: 800px; /* Max width to prevent overly wide content */
+    text-align: left; /* Left align text inside sections */
+}
+
+.demo-page-category {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ADD8E6; /* Light blue color for category names */
+    margin-bottom: 10px; /* Space below category names */
+}
+
+.demo-page-content {
+    color: #fff;
+    margin-top: 10px; /* Spacing between content and category name */
+}
+
+.demo-page-category p {
+    margin: 5px 0; /* Space between items in the category */
+}
+
+/* Styling for the loading and error states */
+.loading, .error {
+    font-size: 1.2rem;
+    color: gold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.loading {
+    color: #ffcc00;
+}
+
+.error {
+    color: #ff0000;
+}
+
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 20px; /* Space between title and content */
+    text-align: center; /* Center title */
+}
+
+.demo-page-section {
+    background-color: rgba(0, 0, 0, 0.5); /* Dark translucent background */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    width: 80%;
+    max-width: 800px; /* Max width to prevent overly wide content */
+    text-align: left; /* Left align text inside sections */
+}
+
+.demo-page-category {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ADD8E6; /* Light blue color for category names */
+    margin-bottom: 10px; /* Space below category names */
+}
+
+.demo-page-content {
+    color: #fff;
+    margin-top: 10px; /* Spacing between content and category name */
+}
+
+.demo-page-category p {
+    margin: 5px 0; /* Space between items in the category */
+}
+
+/* Styling for the loading and error states */
+.loading, .error {
+    font-size: 1.2rem;
+    color: gold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.loading {
+    color: #ffcc00;
+}
+
+.error {
+    color: #ff0000;
+}

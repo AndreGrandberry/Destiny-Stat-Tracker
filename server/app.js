@@ -11,6 +11,7 @@ import mongoose from 'mongoose';
 
 import auth from './routes/auth.js';
 import api from './routes/api.js';
+import demo from './routes/demo.js';
 
 dotenv.config({ path: '../.env' });
 
@@ -28,7 +29,7 @@ const URL = process.env.URL;
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch((err) => console.log('Error connecting to MongoDB Atlas', err));
-  console.log(process.env.MONGODB_URI);
+
 
 
 // Configure the Redis client
@@ -71,7 +72,8 @@ app.use(express.static('dist')); // Serve the frontend files
 
 //Routes
 app.use("/auth", auth);
-app.use("/api", api)
+app.use("/api", api);
+app.use("/demo", demo);
 
  // EJS setup to server the error.ejs template
 app.set('view engine', 'ejs');

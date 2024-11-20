@@ -1,41 +1,81 @@
-body{
+body {
   background: linear-gradient(135deg, #001f3f, #052c4f, #0c395f, #13476f, #1a557f);
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: flex-start; /* Align content to the top of the page */
+  height: 100%;
+  margin: 0; /* Remove default margin */
+  padding: 0;
 }
 
 .homepage-container {
-    padding: 20px;
-    border-radius: 10px;
-    margin: auto;
-    width: 80%;
-    max-width: 600px;
-    text-align: center; /* Center align content */
-    margin-top: 25vh; /* Center vertically */
-  }
-  
-  .homepage-title {
-    font-size: 36px; /* Increase font size */
-    margin-bottom: 30px; /* Increase space below title */
-  }
-  
-  .homepage-description {
-    font-size: 18px; /* Increase font size */
-    margin-bottom: 20px; /* Increase space below description */
-  }
-  
-  .homepage-button {
-    background-color: #007bff; /* Blue button color */
-    color: #fff; /* White text color */
-    border: none;
-    padding: 15px 30px; /* Increase button padding */
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 18px; /* Increase button font size */
-  }
-  
-  .homepage-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-  }
-  
-  .homepage-error {
-    color: red; /* Red color for error message */
-  }
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  text-align: center; /* Center align content */
+  margin-top: 20px; /* Move content down slightly */
+}
+
+.homepage-title {
+  font-size: 36px; /* Increase font size */
+  margin-bottom: 30px; /* Increase space below title */
+}
+
+.homepage-description {
+  font-size: 18px; /* Increase font size */
+  margin-bottom: 20px; /* Increase space below description */
+}
+
+/* New text above the button */
+.demo-info-text {
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.5; /* Improve spacing between lines of text */
+  text-align: center; /* Center the text horizontally */
+}
+
+/* Smaller demo button */
+.homepage-button {
+  background-color: #007bff; /* Blue button color */
+  color: #fff; /* White text color */
+  border: none;
+  padding: 12px 25px; /* Reduced padding for a smaller button */
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px; /* Smaller font size */
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* Add space between the text and button */
+}
+
+.homepage-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Adjust the placement of the button and its text */
+.demo-button-container {
+  text-align: center; /* Center horizontally */
+  margin-top: 60px; /* Increase space to push button further down */
+}
+
+/* Style for the error message */
+.homepage-error {
+  color: red; /* Red color for error message */
+}
+
+/* Style for the GitHub link */
+.github-link {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #555;
+}
+
+.github-link a {
+  color: #007bff; /* Blue color for the link */
+  text-decoration: none;
+}
+
+.github-link a:hover {
+  text-decoration: underline; /* Underline the link on hover */
+}
