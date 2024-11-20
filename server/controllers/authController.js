@@ -4,6 +4,7 @@ import AppError from '../AppError.js';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: '../../.env'});
+console.log('Environment Variables:', process.env);
 
 
 const API_ROOT_PATH = 'https://www.bungie.net/Platform' 
