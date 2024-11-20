@@ -12,9 +12,9 @@ router.get('/', async (req, res) => {
     if (!app.client) {
       return res.status(500).json({ error: "Redis client not initialized" });
     }
-    const membershipType = await app.client.get("membershipType");
-    const membershipId = await app.client.get("membershipId");
-    const accessToken = await app.client.get("accessToken");
+    const membershipType = req.session.membershipType;
+    const membershipId = req.session.membershipId;
+    const accessToken = req.session.accessToken;
 
 
     if (!membershipType || !membershipId || !accessToken) {
