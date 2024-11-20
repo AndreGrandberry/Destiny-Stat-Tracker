@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
     // Send the data back to the frontend
     res.status(200).json(metricsWithProgress);
   } catch (error) {
-    console.error("Error in /api/metrics route:", error.message);
+    console.error("Error in /api/ route:", error.message);
     res.status(500).json({ error: error.message });
   }
 });
