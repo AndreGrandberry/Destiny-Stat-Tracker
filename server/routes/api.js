@@ -1,6 +1,5 @@
 import express from "express";
 import { getMetricsWithProgress } from "../controllers/apiController.js"; 
-import { app } from '../app.js';
 
 
 
@@ -9,9 +8,6 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
    
-    if (!app.client) {
-      return res.status(500).json({ error: "Redis client not initialized" });
-    }
     const membershipType = req.session.membershipType;
     const membershipId = req.session.membershipId;
     const accessToken = req.session.accessToken;
