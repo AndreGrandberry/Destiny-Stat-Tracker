@@ -13,6 +13,8 @@ import api from './routes/api.js';
 
 dotenv.config({ path: '../.env' });
 
+console.log('Loaded Client ID:', process.env.OAUTH_CLIENT_ID);
+
 
 // Define __dirname for ES Module
 const __filename = fileURLToPath(import.meta.url);
