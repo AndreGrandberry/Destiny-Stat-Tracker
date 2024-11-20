@@ -8,7 +8,6 @@ const Homepage = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const oauthClientId = import.meta.env.VITE_OAUTH_CLIENT_ID;
   
 
 
@@ -16,8 +15,8 @@ const Homepage = () => {
     try {
       setLoading(true);
       // Url to initiate OAuth flow
-      const authorizationUrl = `https://www.bungie.net/en/oauth/authorize?client_id=${oauthClientId}&response_type=code&redirect_uri=https://destiny-stat-tracker.com/auth/callback`;
-      console.log('Redirecting to OAuth provider...');
+      const authorizationUrl = `https://www.bungie.net/en/oauth/authorize?client_id=${import.meta.env.VITE_OAUTH_CLIENT_ID}&response_type=code&redirect_uri=https://destiny-stat-tracker.com/auth/callback`;
+      console.log('Redirecting to OAuth provider...', import.meta.env.VITE_OAUTH_CLIENT_ID);
       window.location.href = authorizationUrl; // Redirect user to OAuth provider
     } catch (error) {
       setError(error.message);
