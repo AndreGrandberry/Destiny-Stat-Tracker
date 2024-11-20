@@ -1,18 +1,18 @@
 import express from "express";
 import { getMetricsWithProgress } from "../controllers/apiController.js"; 
-import { client } from '../app.js';
+import app from '../app.js';
 
-console.log("Redis client test 1:", client);
+console.log("Redis client test 1:", app.client);
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    console.log("Redis client test 2:", client);
+    console.log("Redis client test 2:", app.client);
 
-    const membershipType = await client.get("membershipType");
-    const membershipId = await client.get("membershipId");
-    const accessToken = await client.get("accessToken");
+    const membershipType = await app.client.get("membershipType");
+    const membershipId = await app.client.get("membershipId");
+    const accessToken = await app.client.get("accessToken");
 
 
     if (!membershipType || !membershipId || !accessToken) {
