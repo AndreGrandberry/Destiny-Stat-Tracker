@@ -22,10 +22,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const URL = process.env.URL;
-const uri = process.env.MONGODB_URI;
+
 
 // MongoDB Connection
-mongoose.connect(uri)
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch((err) => console.log('Error connecting to MongoDB Atlas', err));
 
