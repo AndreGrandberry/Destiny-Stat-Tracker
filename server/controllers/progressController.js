@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const fetchAllMetricsProgress = async (membershipType, membershipId, accessToken) => {
     try {
       // Fetch all metrics progress in one request
