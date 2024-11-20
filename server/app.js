@@ -23,20 +23,21 @@ const __dirname = path.dirname(__filename);
 const URL = process.env.URL;
 
 // Configure the Redis client
-const client = createClient({
+let client;
+(async () => {
+  client = createClient({
     url: URL
-});
+  });
 
-client.on('connect', () => {
-    console.log('Connected to Redis server')
-});
+  client.on('connect', () => {
+    console.log('Connected to Redis server');
+  });
 
-// Redis error handling
-client.on("error", (error) => console.error(`Redis error: ${error}`));
+  client.on("error", (error) => console.error(`Redis error: ${error}`));
 
-// Connect to Redis
-await client.connect();
-
+  await client.connect(); // Ensure the client connects before we use it
+  console.log('Redis client is initialized');
+})();
 
 
 const app = express();
