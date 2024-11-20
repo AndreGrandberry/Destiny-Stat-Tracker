@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '../../.env'});
 
 console.log('Bungie Api Key', process.env.BUNGIE_API_KEY);
-const uri = process.env.MONGODB_CONNECTION_STRING;
+const uri = process.env.MONGODB_URI;
 
 if (!uri) {
   console.error('MongoDB connection string is undefined. Check your .env file.');

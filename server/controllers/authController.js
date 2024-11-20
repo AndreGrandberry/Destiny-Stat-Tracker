@@ -3,7 +3,7 @@ import axios from 'axios';
 import AppError from '../AppError.js';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: '../../.env'});
+dotenv.config({ path: '../../.env' });
 
 
 
@@ -16,7 +16,6 @@ const BUNGIE_API_KEY = process.env.BUNGIE_API_KEY;
 // function to handle the OAuth flow
 export const handleOAuthCallback = async (req, res, next) => {
     try {
-        console.log('Environment Variables:', process.env);
         
         console.log('Client Id: ', OAUTH_CLIENT_ID);
         console.log('Client Secret: ', OAUTH_CLIENT_SECRET);
