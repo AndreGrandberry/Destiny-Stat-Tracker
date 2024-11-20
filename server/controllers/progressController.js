@@ -1,9 +1,15 @@
 import axios from "axios";
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '../../.env' });
+
+const API_ROOT_PATH = 'https://www.bungie.net/Platform';
+const BUNGIE_API_KEY = process.env.BUNGIE_API_KEY;
 
 export const fetchAllMetricsProgress = async (membershipType, membershipId, accessToken) => {
     try {
       // Fetch all metrics progress in one request
-      const API_ROOT_PATH = 'https://www.bungie.net/Platform'
+      
       const endpoint = `${API_ROOT_PATH}/Destiny2/${membershipType}/Profile/${membershipId}/?components=Metrics`;
       const response = await axios.get(endpoint, {
         headers: {
