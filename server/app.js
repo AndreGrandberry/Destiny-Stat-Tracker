@@ -28,6 +28,7 @@ const URL = process.env.URL;
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch((err) => console.log('Error connecting to MongoDB Atlas', err));
+  console.log(process.env.MONGODB_URI);
 
 
 // Configure the Redis client
