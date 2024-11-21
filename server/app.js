@@ -6,6 +6,7 @@ import { createClient } from 'redis';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
+import AppError from './AppError.js';
 import mongoose from 'mongoose';
 
 import auth from './routes/auth.js';
@@ -80,29 +81,16 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'))
 
 
-// app.get('/set-session', (req, res) => {
-//     req.session.user = {
-//         id: 'user123',
-//         accessToken: 'yourAccessToken'
-//     };
-//     res.send('Session data saved!')
-// });
 
-// app.get('/get-session', (req, res) => {
-//     if (req.session.user) {
-//         res.send(`User ID: ${req.session.user.id}, Access Token: ${req.session.user.accessToken}`)
-//     } else {
-//         res.send('No session data found');
-//     }
-// });
 
-// app.all('*', (req, res, next) => {
-//     next(new AppError('Page Not Found', 404));
-// });
-
-app.all('*', (req, res) => {
+app.all('*', (req, res, next) => {
+  // Serve index.html for frontend React Router routes
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+
+  // If page not found, throw an AppError
+  next(new AppError('Page Not Found', 404));
 });
+
 
 
 
@@ -111,6 +99,14 @@ app.use((err, req, res, next) => {
     const message = err.message || 'Internal Server Error';
     
     res.status(status).render('error', { message, status });
+    if (status === 404) {
+      // Render a custom 404 page if it's a 404 error
+      res.status(404).render('404', { message });
+    } else {
+      // Render a generic error page for other errors
+      res.status(status).render('error', { message, status });
+    }
+  
 });
 
 
