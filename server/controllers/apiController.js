@@ -3,38 +3,39 @@ import { fetchAllMetricsProgress } from "./progressController.js";
 import { fetchPresentationNodeMetrics } from "../scripts/metricsController.js";
 
 
-const accessToken = req.session.accessToken;
-const presentationNodes = [
-  { presentationNodeHash: '3844527950', categoryName: "Seasons" },
-  { presentationNodeHash: '2875839731', categoryName: "Account" },
-  { presentationNodeHash: '565440981', categoryName: "Crucible" },
-  { presentationNodeHash: '3707324621', categoryName: "Destination" },
-  { presentationNodeHash: '4193411410', categoryName: "Gambit" },
-  { presentationNodeHash: '926976517', categoryName: "Raids" },
-  { presentationNodeHash: '2755216039', categoryName: "Strikes" },
-  { presentationNodeHash: '3722177789', categoryName: "Trials of Osiris" }
-];
 
-// Array to store the metric hashes
-let metricHashes = [];
-
-for (const node of presentationNodes) {
-  const nodeHash = node.presentationNodeHash; // Take the NodeHash of the category
-  const nodeData = await fetchPresentationNodeMetrics(nodeHash, accessToken);
-
-  // Iterate through the metrics and store the metricHash in the array
-  for (const metric of nodeData) {
-    console.log(metric.metricHash);  // Log the metricHash to console
-    metricHashes.push(metric.metricHash);  // Store the metricHash in the array
-  }
-}
-
-// Now you can use the metricHashes array
-console.log(metricHashes);  // Array of all metricHashes from all nodes
 
 
 export const getMetricsWithProgress = async (membershipType, membershipId, accessToken) => {
   try {
+
+    const presentationNodes = [
+      { presentationNodeHash: '3844527950', categoryName: "Seasons" },
+      { presentationNodeHash: '2875839731', categoryName: "Account" },
+      { presentationNodeHash: '565440981', categoryName: "Crucible" },
+      { presentationNodeHash: '3707324621', categoryName: "Destination" },
+      { presentationNodeHash: '4193411410', categoryName: "Gambit" },
+      { presentationNodeHash: '926976517', categoryName: "Raids" },
+      { presentationNodeHash: '2755216039', categoryName: "Strikes" },
+      { presentationNodeHash: '3722177789', categoryName: "Trials of Osiris" }
+    ];
+    
+    // Array to store the metric hashes
+    let metricHashes = [];
+    
+    for (const node of presentationNodes) {
+      const nodeHash = node.presentationNodeHash; // Take the NodeHash of the category
+      const nodeData = await fetchPresentationNodeMetrics(nodeHash, accessToken);
+    
+      // Iterate through the metrics and store the metricHash in the array
+      for (const metric of nodeData) {
+        console.log(metric.metricHash);  // Log the metricHash to console
+        metricHashes.push(metric.metricHash);  // Store the metricHash in the array
+      }
+    }
+    
+    // Now you can use the metricHashes array
+    console.log(metricHashes);  // Array of all metricHashes from all nodes
 
     // Step 1: Fetch metrics data from the database
     const metricsData = await Metric.findOne().maxTimeMS(20000);
