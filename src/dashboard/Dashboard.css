@@ -121,6 +121,7 @@ body {
     .categories {
       flex-direction: column;
       justify-content: center;
+      overflow-x: scroll;
     }
   
     .category {
