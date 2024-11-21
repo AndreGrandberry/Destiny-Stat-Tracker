@@ -3,6 +3,7 @@ import { fetchAllMetricsProgress } from "./progressController.js";
 import { fetchPresentationNodeMetrics } from "../scripts/metricsController.js";
 
 
+const accessToken = req.session.accessToken;
 const presentationNodes = [
   { presentationNodeHash: '3844527950', categoryName: "Seasons" },
   { presentationNodeHash: '2875839731', categoryName: "Account" },
