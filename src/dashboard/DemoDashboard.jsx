@@ -13,7 +13,7 @@ const DemoDashboard = () => {
   useEffect(() => {
     const fetchMetricsData = async () => {
       try {
-        const response = await fetch('/demo'); // Fetch the demo data from the backend (MongoDB)
+        const response = await fetch('/demo'); // Fetch the demo data from the backend demo api
         const data = await response.json();
         setMetricsData(data); // Set the fetched data to state
         setLoading(false); // Set loading to false once data is fetched

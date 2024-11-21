@@ -9,102 +9,157 @@ body {
     justify-content: flex-start;
     align-items: center;
     padding: 0;
-}
-
-.title {
+  }
+  
+  .title {
     text-align: center;
     margin-top: 10vh;
     font-size: 2rem;
     color: #fff;
-}
-
-.intro {
+  }
+  
+  .intro {
     text-align: center;
     margin-top: 15vh;
     color: #fff;
-}
-
-/* Sticky Category Names and Full Width */
-.categories {
+  }
+  
+  .categories {
     display: flex;
-    justify-content: space-evenly; /* Spread out category names evenly */
-    width: 100%; /* Ensure it spans the entire width */
+    justify-content: space-evenly;
+    width: 100%;
     margin-top: 20px;
     padding-bottom: 20px;
     text-align: center;
-    position: sticky; /* Fix the categories at the top */
-    top: 0; /* Stick to the top */
-    z-index: 10; /* Ensure categories stay above other content */
-    background-color: rgba(0, 0, 0, 0); /* Transparent by default */
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
-    height: auto; /* Allow it to grow as needed */
-}
-
-.categories.scrolled {
-    background-color: rgba(0, 0, 0, 0.5); /* Add faint background color when scrolled */
-}
-
-/* Category styling */
-.category {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.3s ease;
+    height: auto;
+  }
+  
+  .categories.scrolled {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .category {
     cursor: pointer;
     padding: 10px;
-    margin: 0 10px; /* Add margin between categories */
+    margin: 0 10px;
     border: none;
-    transition: color 0.3s; /* Smooth color transition on hover */
-    white-space: nowrap; /* Prevent long category names from wrapping */
-}
-
-.category:hover {
-    color: #ff7e5f; /* Orange hover color */
-}
-
-.category.selected {
-    color: #1a557f; /* Highlight selected category */
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
+  
+  .category:hover {
+    color: #ff7e5f;
+  }
+  
+  .category.selected {
+    color: #1a557f;
     font-weight: bold;
-}
-
-.metrics {
+  }
+  
+  .metrics {
     padding: 20px;
-}
-
-.category-title {
+  }
+  
+  .category-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #ADD8E6; /* Light blue color for category names */
+    color: #ADD8E6;
     margin-bottom: 10px;
-}
-
-.metric {
-    background-color: rgba(0, 0, 0, 0.5); /* Dark translucent background */
+  }
+  
+  .metric {
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     padding: 20px;
     margin: 10px 0;
     width: 80%;
     max-width: 800px;
-}
-
-.metric h4 {
-    color: #ADD8E6; /* Bright text color for metric names */
+  }
+  
+  .metric h4 {
+    color: #ADD8E6;
     margin-top: 0;
     padding: 5px 10px;
-}
-
-.progress {
-    color: gold; /* Gold color for progress */
-}
-
-.loading,
-.error {
+  }
+  
+  .progress {
+    color: gold;
+  }
+  
+  .loading,
+  .error {
     font-size: 1.2rem;
     color: gold;
     text-align: center;
     margin-top: 20px;
-}
-
-.loading {
+  }
+  
+  .loading {
     color: #ffcc00;
-}
-
-.error {
+  }
+  
+  .error {
     color: #ff0000;
-}
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  
+    .intro {
+      font-size: 1rem;
+      margin-top: 10vh;
+    }
+  
+    .categories {
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    .category {
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+  
+    .metrics {
+      padding: 10px;
+    }
+  
+    .category-title {
+      font-size: 1.2rem;
+    }
+  
+    .metric {
+      padding: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .title {
+      font-size: 1.2rem;
+    }
+  
+    .category {
+      font-size: 0.9rem;
+    }
+  
+    .category-title {
+      font-size: 1rem;
+    }
+  
+    .metrics {
+      padding: 5px;
+    }
+  
+    .metric {
+      padding: 10px;
+    }
+  }
+  

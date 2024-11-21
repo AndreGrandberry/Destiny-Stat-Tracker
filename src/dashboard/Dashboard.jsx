@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './Dashboard.css'; // Make sure to import your CSS file to keep the styling
 import ReturnHomeButton from './ReturnHomeButton';
-import { convertTimestamp } from './DashboardFunctions'; // This function can stay the same
+import { convertTimestamp } from './DashboardFunctions'; 
 
 const Dashboard = () => {
   const [metricsData, setMetricsData] = useState([]); // Data state for metrics (from MongoDB)
@@ -9,7 +8,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
 
-  // Fetch metrics data from MongoDB on component mount (but now from /api instead of /demo)
+  // Fetch metrics data from backend api endpoind
   useEffect(() => {
     const fetchMetricsData = async () => {
       try {
@@ -26,13 +25,13 @@ const Dashboard = () => {
     fetchMetricsData(); // Call the fetch function when component mounts
   }, []);
 
-  // Smooth scroll to top when category is selected
+ 
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
     window.scrollTo({
-      top: 0, // Scroll to the top of the page
+      top: 0, 
       left: 0,
-      behavior: 'smooth', // Enable smooth scrolling
+      behavior: 'smooth', 
     });
   };
 
@@ -42,7 +41,7 @@ const Dashboard = () => {
   return (
     <div>
       <h1 className="title">Destiny Stat Tracker</h1>
-      <p className="intro">Your stats for various Destiny 2 activities pulled from MongoDB</p>
+      <p className="intro">Your stats for various Destiny 2 activities pulled from Bungie's API</p>
       <ReturnHomeButton />
 
       {/* Category Names Displayed Evenly Across the Page */}

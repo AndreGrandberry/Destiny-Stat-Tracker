@@ -3,14 +3,14 @@
     top: 20px;
     right: 20px;
     padding: 10px 20px;
-    background-color: transparent; /* Remove the background color */
+    background-color: transparent; 
     color: #fff;
     text-decoration: none;
-    border: 2px solid #fff; /* Add a white border */
+    border: 2px solid #fff; 
     border-radius: 5px;
 }
   
 .return-home-button:hover {
-   color: salmon; /* Add a transparent white background on hover */
+   color: salmon; 
 }
   

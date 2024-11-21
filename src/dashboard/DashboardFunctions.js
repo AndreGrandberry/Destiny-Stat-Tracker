@@ -1,4 +1,3 @@
-//DashboardFunctions.js
 
 export function convertTimestamp(milliseconds) {
     // Convert milliseconds to seconds
