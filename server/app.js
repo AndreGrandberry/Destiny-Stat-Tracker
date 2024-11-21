@@ -98,15 +98,9 @@ app.use((err, req, res, next) => {
     const status = err.statusCode || 500; // Fallback to 500 for unknown errors
     const message = err.message || 'Internal Server Error';
     
+   
     res.status(status).render('error', { message, status });
-    if (status === 404) {
-      // Render a custom 404 page if it's a 404 error
-      res.status(404).render('404', { message });
-    } else {
-      // Render a generic error page for other errors
-      res.status(status).render('error', { message, status });
-    }
-  
+    
 });
 
 
