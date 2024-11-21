@@ -83,14 +83,14 @@ app.set('views', path.join(__dirname, '/views'))
 
 
 
-app.all('*', (req, res, next) => {
-  // Serve index.html for frontend React Router routes
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-
-  // If page not found, throw an AppError
-  next(new AppError('Page Not Found', 404));
+app.all('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html')); // Serve the index.html for React Router to handle
 });
 
+
+app.use((req, res, next) => {
+  next(new AppError('Page Not Found', 404)); // Trigger custom 404 error if route is not found
+});
 
 
 
@@ -98,6 +98,13 @@ app.use((err, req, res, next) => {
     const status = err.statusCode || 500; // Fallback to 500 for unknown errors
     const message = err.message || 'Internal Server Error';
     
+    // if (status === 404) {
+    //   // Render a custom 404 page if it's a 404 error
+    //   res.status(404).render('404', { message });
+    // } else {
+    //   // Render a generic error page for other errors
+    //   res.status(status).render('error', { message, status });
+    // }
    
     res.status(status).render('error', { message, status });
     
