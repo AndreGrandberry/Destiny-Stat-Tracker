@@ -6,13 +6,11 @@ import { createClient } from 'redis';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import AppError from './AppError.js';
 import mongoose from 'mongoose';
 
 import auth from './routes/auth.js';
 import api from './routes/api.js';
 import demo from './routes/demo.js';
-import dashboard from './routes/dashboard.js';
 
 
 dotenv.config({ path: '../.env' });
@@ -76,7 +74,6 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use("/auth", auth);
 app.use("/api", api);
 app.use("/demo", demo);
-app.use("/dashboard", dashboard);
 
  // EJS setup to server the error.ejs template
 app.set('view engine', 'ejs');
@@ -99,9 +96,9 @@ app.set('views', path.join(__dirname, '/views'))
 //     }
 // });
 
-app.all('*', (req, res, next) => {
-    next(new AppError('Page Not Found', 404));
-});
+// app.all('*', (req, res, next) => {
+//     next(new AppError('Page Not Found', 404));
+// });
 
 app.all('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));

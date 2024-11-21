@@ -87,7 +87,7 @@ export const handleOAuthCallback = async (req, res, next) => {
       
         
 
-        res.redirect(`https://destiny-stat-tracker.com/dashboard`); // Redirect to route that handles fetching and storing API information
+        res.redirect('https://destiny-stat-tracker.com/dashboard'); // Redirect to route that handles fetching and storing API information
     } catch (error) {
         console.log(error)
         next(new AppError('OAuth Callback Failed', 500))
