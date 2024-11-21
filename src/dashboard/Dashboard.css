@@ -10,86 +10,87 @@ body {
     align-items: center;
     padding: 0;
 }
-
+  
 .title {
     text-align: center;
     margin-top: 10vh;
     font-size: 2rem;
     color: #fff;
 }
-
+  
 .intro {
     text-align: center;
     margin-top: 15vh;
     color: #fff;
 }
-
-/* Categories styling - Default Desktop version */
+  
 .categories {
     display: flex;
-    justify-content: space-evenly; 
-    width: 100%; 
+    justify-content: space-evenly;
+    width: 100%;
     margin-top: 20px;
     padding-bottom: 20px;
     text-align: center;
-    position: relative; /* Removed sticky for mobile */
-    background-color: rgba(0, 0, 0, 0); 
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0);
     transition: background-color 0.3s ease;
+    height: auto;
 }
-
-/* On scroll, the background will change color (only on desktop, mobile will use the normal background) */
+  
 .categories.scrolled {
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
 }
-
+  
 .category {
     cursor: pointer;
     padding: 10px;
     margin: 0 10px;
     border: none;
-    transition: color 0.3s; 
-    white-space: nowrap; /* Prevent category names from wrapping */
+    transition: color 0.3s;
+    white-space: nowrap;
 }
-
+  
 .category:hover {
-    color: #ff7e5f; 
+    color: #ff7e5f;
 }
-
+  
 .category.selected {
-    color: #1a557f; 
+    color: #1a557f;
     font-weight: bold;
 }
-
+  
 .metrics {
     padding: 20px;
 }
-
+  
 .category-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #ADD8E6; 
+    color: #ADD8E6;
     margin-bottom: 10px;
 }
-
+  
 .metric {
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     padding: 20px;
     margin: 10px 0;
     width: 80%;
     max-width: 800px;
 }
-
+  
 .metric h4 {
-    color: #ADD8E6; 
+    color: #ADD8E6;
     margin-top: 0;
     padding: 5px 10px;
 }
-
+  
 .progress {
-    color: gold; 
+    color: gold;
 }
-
+  
 .loading,
 .error {
     font-size: 1.2rem;
@@ -97,43 +98,87 @@ body {
     text-align: center;
     margin-top: 20px;
 }
-
+  
 .loading {
     color: #ffcc00;
 }
-
+  
 .error {
     color: #ff0000;
 }
-
-/* Mobile-specific styles */
-@media screen and (max-width: 768px) {
+  
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  
+    .intro {
+      font-size: 1rem;
+      margin-top: 10vh;
+    }
+  
     .categories {
-        flex-direction: row; /* Display categories horizontally on mobile */
-        font-size: 14px; /* Adjust the font size for mobile */
-        overflow-x: scroll; /* Allow horizontal scrolling for categories */
+      flex-direction: column;
+      justify-content: center;
     }
-
+  
     .category {
-        padding: 10px;
-        font-size: 12px; /* Adjust font size for mobile */
+      font-size: 1rem;
+      margin-bottom: 15px;
     }
-
-    .return-to-top {
-        display: block;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #007bff;
-        color: #fff;
-        padding: 10px 15px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.3s ease;
+  
+    .metrics {
+      padding: 10px;
     }
-
-    .return-to-top:hover {
-        background-color: #0056b3;
+  
+    .category-title {
+      font-size: 1.2rem;
+    }
+  
+    .metric {
+      padding: 15px;
     }
 }
+
+.return-to-top {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: transparent; 
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #fff; 
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.return-to-top:hover {
+    color: salmon; 
+}
+  
+@media (max-width: 480px) {
+    .title {
+      font-size: 1.2rem;
+    }
+  
+    .category {
+      font-size: 0.9rem;
+    }
+  
+    .category-title {
+      font-size: 1rem;
+    }
+  
+    .metrics {
+      padding: 5px;
+    }
+  
+    .metric {
+      padding: 10px;
+    }
+}
+  
