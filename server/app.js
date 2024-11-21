@@ -69,7 +69,7 @@ app.use(
 
 // app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('dist')); // Serve the frontend files 
+app.use(express.static(path.join(__dirname, 'dist'))); 
 
 //Routes
 app.use("/auth", auth);
