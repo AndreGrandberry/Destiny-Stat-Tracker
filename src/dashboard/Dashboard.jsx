@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import './DemoDashboard.css'; // Import your CSS file to keep the styling
+import './Dashboard.css'; // Make sure to import your CSS file to keep the styling
 import ReturnHomeButton from './ReturnHomeButton';
-import { convertTimestamp } from './DashboardFunctions';
+import { convertTimestamp } from './DashboardFunctions'; // This function can stay the same
 
-const DemoDashboard = () => {
+const Dashboard = () => {
   const [metricsData, setMetricsData] = useState([]); // Data state for metrics (from MongoDB)
   const [selectedCategory, setSelectedCategory] = useState('Seasons'); // Default selected category
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
 
-  // Fetch metrics data from MongoDB on component mount
+  // Fetch metrics data from MongoDB on component mount (but now from /api instead of /demo)
   useEffect(() => {
     const fetchMetricsData = async () => {
       try {
-        const response = await fetch('/demo'); // Fetch the demo data from the backend (MongoDB)
+        const response = await fetch('/api'); // Fetch the data from the /api endpoint (MongoDB)
         const data = await response.json();
         setMetricsData(data); // Set the fetched data to state
         setLoading(false); // Set loading to false once data is fetched
@@ -41,8 +41,8 @@ const DemoDashboard = () => {
 
   return (
     <div>
-      <h1 className="title">Destiny Stat Tracker Demo</h1>
-      <p className="intro">This is a sample page of the Destiny Stat Tracker Dashboard</p>
+      <h1 className="title">Destiny Stat Tracker</h1>
+      <p className="intro">Your stats for various Destiny 2 activities pulled from MongoDB</p>
       <ReturnHomeButton />
 
       {/* Category Names Displayed Evenly Across the Page */}
@@ -71,7 +71,7 @@ const DemoDashboard = () => {
                   <div key={idx} className="metric">
                     <h4>{metric.name}</h4>
                     <p>{metric.description}</p>
-                    <p className='progress'>Progress: {metric.description.startsWith('The fastest completion')
+                    <p className="progress">Progress: {metric.description.startsWith('The fastest completion')
                     ? convertTimestamp(metric.progress) // Convert progress to timestamp
                     : metric.progress // Otherwise, use the original progress value
                     }</p>
@@ -84,4 +84,4 @@ const DemoDashboard = () => {
   );
 };
 
-export default DemoDashboard;
+export default Dashboard;

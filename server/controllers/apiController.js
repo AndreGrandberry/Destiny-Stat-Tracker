@@ -29,13 +29,10 @@ export const getMetricsWithProgress = async (membershipType, membershipId, acces
     
       // Iterate through the metrics and store the metricHash in the array
       for (const metric of nodeData) {
-        console.log(metric.metricHash);  // Log the metricHash to console
         metricHashes.push(metric.metricHash);  // Store the metricHash in the array
       }
     }
     
-    // Now you can use the metricHashes array
-    console.log(metricHashes);  // Array of all metricHashes from all nodes
 
     // Step 1: Fetch metrics data from the database
     const metricsData = await Metric.findOne().maxTimeMS(20000);

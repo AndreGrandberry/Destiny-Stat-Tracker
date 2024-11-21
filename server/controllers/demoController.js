@@ -1,10 +1,10 @@
-import MetricsDemo from '../models/metricsDemo.js'; // Import the MetricsDemo model
+import MetricsDemo from '../models/metricsDemo.js'; 
 
 // Controller function to get demo metrics data
 export const getDemoMetrics = async (req, res) => {
   try {
     // Query the MetricsDemo collection in MongoDB
-    const metricsData = await MetricsDemo.find(); // You can add filters if needed
+    const metricsData = await MetricsDemo.find(); 
     res.json(metricsData); // Send the data as a JSON response
   } catch (error) {
     console.error('Error fetching metrics data:', error.message);
