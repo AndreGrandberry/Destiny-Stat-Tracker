@@ -1,3 +1,9 @@
+/* The progress field is empty in the db
+  this is due to conflicts with how Bungie
+  stores metrics in their API.
+  So we retrieve the progress for the metrics separately
+*/
+
 import axios from "axios";
 import dotenv from 'dotenv';
 

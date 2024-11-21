@@ -1,4 +1,5 @@
-//authController.js
+// Controller functions for the /auth/callback route to handle OAuth
+
 import axios from 'axios';
 import AppError from '../AppError.js';
 import dotenv from 'dotenv';
@@ -8,22 +9,14 @@ dotenv.config({ path: '../../.env' });
 
 
 const API_ROOT_PATH = 'https://www.bungie.net/Platform' 
-const OAUTH_CLIENT_ID = process.env.OAUTH_CLIENT_ID;
-const OAUTH_CLIENT_SECRET = process.env.OAUTH_CLIENT_SECRET;
 
 
 
-// function to handle the OAuth flow
+// Function to handle the OAuth flow
 export const handleOAuthCallback = async (req, res, next) => {
     try {
         
-        console.log('Client Id: ', process.env.OAUTH_CLIENT_ID);
-        console.log('Client Secret: ', process.env.OAUTH_CLIENT_SECRET);
-        console.log('Bungie API Key', process.env.BUNGIE_API_KEY);
-        console.log('Auth flow initiated');
         const { code } = req.query; // Receive the authorization code from the query params
-        console.log('Authorization code received:', code);
-
         if (!code) {
             throw new AppError('Authorization code missing', 400);
         }
@@ -31,8 +24,7 @@ export const handleOAuthCallback = async (req, res, next) => {
         const tokenEndpoint = `${API_ROOT_PATH}/App/Oauth/Token/`; 
 
         const basicAuth = Buffer.from(`${process.env.OAUTH_CLIENT_ID}:${process.env.OAUTH_CLIENT_SECRET}`).toString('base64'); // Exchange access code for and access token
-        console.log('Client ID: ', OAUTH_CLIENT_ID)
-        console.log('Client Secret: ', OAUTH_CLIENT_SECRET)
+        
         const tokenResponse = await axios.post(tokenEndpoint,
             `grant_type=authorization_code&code=${code}&client_id=${process.env.OAUTH_CLIENT_ID}&client_secret=${process.env.OAUTH_CLIENT_SECRET}&redirect_uri=https://destiny-stat-tracker.com/auth/callback`,
             {
@@ -78,7 +70,7 @@ export const handleOAuthCallback = async (req, res, next) => {
 
        
 
-        // Save user data to the database
+        // Save user data to Redis session.
         const membershipType = crossSaveOverride; // Membershiptype/crossaveSaveOrride are data points that represent the primary console of the user
 
         req.session.membershipType = membershipType; // Save user information into session.
@@ -87,7 +79,7 @@ export const handleOAuthCallback = async (req, res, next) => {
       
         
 
-        res.redirect('https://destiny-stat-tracker.com/dashboard'); // Redirect to route that handles fetching and storing API information
+        res.redirect('https://destiny-stat-tracker.com/dashboard'); // Redirect the dashboard
     } catch (error) {
         console.log(error)
         next(new AppError('OAuth Callback Failed', 500))

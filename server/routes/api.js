@@ -1,3 +1,8 @@
+/* Route for retrieving progress data data from Bungie API,
+  combining with metrics from MongoDB,
+  and sending as JSON response to frontend.
+  
+*/
 import express from "express";
 import { getMetricsWithProgress } from "../controllers/apiController.js"; 
 

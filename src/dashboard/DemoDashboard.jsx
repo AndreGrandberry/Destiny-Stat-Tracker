@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import './DemoDashboard.css'; // Import your CSS file to keep the styling
+import './DemoDashboard.css'; 
 import ReturnHomeButton from './ReturnHomeButton';
 import { convertTimestamp } from './DashboardFunctions';
 
 const DemoDashboard = () => {
-  const [metricsData, setMetricsData] = useState([]); // Data state for metrics (from MongoDB)
+  const [metricsData, setMetricsData] = useState([]); // Data state for metrics from backend demo api
   const [selectedCategory, setSelectedCategory] = useState('Seasons'); // Default selected category
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
 
-  // Fetch metrics data from MongoDB on component mount
+  // Fetch metrics data from backend on component mount
   useEffect(() => {
     const fetchMetricsData = async () => {
       try {
@@ -23,16 +23,16 @@ const DemoDashboard = () => {
       }
     };
 
-    fetchMetricsData(); // Call the fetch function when component mounts
+    fetchMetricsData(); 
   }, []);
 
   // Smooth scroll to top when category is selected
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
     window.scrollTo({
-      top: 0, // Scroll to the top of the page
+      top: 0, 
       left: 0,
-      behavior: 'smooth', // Enable smooth scrolling
+      behavior: 'smooth', 
     });
   };
 

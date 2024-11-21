@@ -1,6 +1,7 @@
+// Schema for the metrics on the the demo page
+
 import mongoose from 'mongoose';
 
-// Define the schema for MetricsDemo
 const MetricsDemoSchema = new mongoose.Schema({
   categories: [
     {

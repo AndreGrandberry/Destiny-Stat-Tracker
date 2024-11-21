@@ -1,9 +1,11 @@
+// File for seeding the db
+
 import mongoose from 'mongoose';
 import Metric from '../models/metric.js';
 import { organizeMetricsByGroups } from './metricsController.js';
 import dotenv from 'dotenv';
 
-// Load environment variables
+
 
 dotenv.config({ path: '../../.env'});
 
@@ -55,5 +57,4 @@ async function seedDatabase() {
 }
 
 seedDatabase();
-console.log('Bungie API Key: ', process.env.BUNGIE_API_KEY);
 

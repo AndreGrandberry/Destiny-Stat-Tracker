@@ -1,3 +1,4 @@
+// Schema for the metrics/stats stored in the db
 import mongoose from "mongoose";
 
 const MetricSchema = new mongoose.Schema({

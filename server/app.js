@@ -2,7 +2,6 @@ import express from 'express';
 import session from 'express-session';
 import RedisStore from 'connect-redis';
 import { createClient } from 'redis';
-// import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
@@ -16,7 +15,7 @@ import demo from './routes/demo.js';
 
 dotenv.config({ path: '../.env' });
 
-console.log('Loaded Client ID:', process.env.OAUTH_CLIENT_ID);
+
 
 
 // Define __dirname for ES Module
@@ -87,9 +86,6 @@ app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html')); // Explicitly serve the `index.html` for /dashboard
 });
 
-// app.all('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'dist', 'index.html')); // Serve the index.html for React Router to handle
-// });
 
 
 app.use((req, res, next) => {
@@ -101,17 +97,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
     const status = err.statusCode || 500; // Fallback to 500 for unknown errors
     const message = err.message || 'Internal Server Error';
-    
-    // if (status === 404) {
-    //   // Render a custom 404 page if it's a 404 error
-    //   res.status(404).render('404', { message });
-    // } else {
-    //   // Render a generic error page for other errors
-    //   res.status(status).render('error', { message, status });
-    // }
-   
-    res.status(status).render('error', { message, status });
-    
+    res.status(status).render('error', { message, status });  
 });
 
 

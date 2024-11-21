@@ -1,3 +1,5 @@
+// Controller function for the /api route
+
 import Metric from "../models/metric.js";
 import { fetchAllMetricsProgress } from "./progressController.js";
 import { fetchPresentationNodeMetrics } from "../scripts/metricsController.js";
@@ -34,7 +36,7 @@ export const getMetricsWithProgress = async (membershipType, membershipId, acces
     }
     
 
-    // Step 1: Fetch metrics data from the database
+    // Fetch metrics data from the database
     const metricsData = await Metric.findOne().maxTimeMS(20000);
     if (!metricsData) {
       throw new Error("No metrics data found in the database.");
@@ -42,10 +44,10 @@ export const getMetricsWithProgress = async (membershipType, membershipId, acces
 
     const { categories } = metricsData.toObject();
 
-    // Step 2: Fetch all progress from Bungie API
+    //  Fetch all progress from Bungie API
     const progressData = await fetchAllMetricsProgress(membershipType, membershipId, accessToken);
 
-    // Step 3: Add progress to the metrics dynamically
+    // Add progress to the metrics dynamically
     const updatedCategories = categories.map((category) => ({
       categoryName: category.categoryName,
       metrics: category.metrics.map((met, index) => {
@@ -65,7 +67,7 @@ export const getMetricsWithProgress = async (membershipType, membershipId, acces
 
     return updatedCategories; // Ready for the frontend
   } catch (error) {
-    console.error("Error fetching metrics with progress:", error.message);
+
     throw error;
   }
 };

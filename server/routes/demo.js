@@ -1,3 +1,5 @@
+// Route for retrieving demo api data and sending to frontend
+
 import express from 'express';
 import { getDemoMetrics } from '../controllers/demoController.js';
 
