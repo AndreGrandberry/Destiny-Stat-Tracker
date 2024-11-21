@@ -12,7 +12,6 @@ const App = () => {
         <Route exact path="/demo" element={<DemoDashboard />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
 
-        
       </Routes>
     </BrowserRouter>
   );
