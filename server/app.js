@@ -83,9 +83,13 @@ app.set('views', path.join(__dirname, '/views'))
 
 
 
-app.all('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html')); // Serve the index.html for React Router to handle
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html')); // Explicitly serve the `index.html` for /dashboard
 });
+
+// app.all('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist', 'index.html')); // Serve the index.html for React Router to handle
+// });
 
 
 app.use((req, res, next) => {
