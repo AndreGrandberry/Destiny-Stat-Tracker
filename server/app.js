@@ -12,6 +12,7 @@ import mongoose from 'mongoose';
 import auth from './routes/auth.js';
 import api from './routes/api.js';
 import demo from './routes/demo.js';
+import dashboard from './routes/dashboard.js';
 
 dotenv.config({ path: '../.env' });
 
@@ -74,6 +75,7 @@ app.use(express.static('dist')); // Serve the frontend files
 app.use("/auth", auth);
 app.use("/api", api);
 app.use("/demo", demo);
+app.use("/dashboard", dashboard)
 
  // EJS setup to server the error.ejs template
 app.set('view engine', 'ejs');
