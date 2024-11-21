@@ -82,7 +82,7 @@ export async function organizeMetricsByGroups(presentationNodes) {
 /*
 API that takes in a hash which refers to a category of metrics
 Returns the hash of all metrics associated with that hash/category */
-async function fetchPresentationNodeMetrics(presentationNodeHash) { 
+export async function fetchPresentationNodeMetrics(presentationNodeHash) { 
     try {
         const response = await axios.get(`${API_ROOT_PATH}/Destiny2/Manifest/DestinyPresentationNodeDefinition/${presentationNodeHash}/`, {
             headers: {
