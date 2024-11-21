@@ -101,6 +101,10 @@ app.all('*', (req, res, next) => {
     next(new AppError('Page Not Found', 404));
 });
 
+app.all('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 
 
 app.use((err, req, res, next) => {
