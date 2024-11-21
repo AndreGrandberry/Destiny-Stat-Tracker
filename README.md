@@ -10,9 +10,13 @@ authorization button on the homepage the user is prompted by Bungie to allow the
 account information. Afterwards, information such as the user's primary console and bungie membership id are retrieved
 and used to make subsequent API calls and gather all of their stats info. The stats are then converted into JSON data
 and sent to the frontend to be dynamically displayed for viewing experience. If the user does not have a Bungie.net 
-account or does not play Destiny 2, a demo page is provided which mimics the functionality of the dashboard page. 
+account or does not play Destiny 2, a demo page is provided which mimics the functionality of the dashboard page.
 
 # Got Questions?
 
 This full stack project was completed soley by me, Andre Grandberry, and is hosted using AWS. If you have any inquires
 or feeback, please feel free to contact me at my email: dr.dre212@gmail.com
+
+# Website Link
+
+https://destiny-stat-tracker.com
