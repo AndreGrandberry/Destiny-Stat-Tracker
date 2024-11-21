@@ -36,6 +36,13 @@ const DemoDashboard = () => {
     });
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   if (loading) return <p className="loading">Loading...</p>;
   if (error) return <p className="error">{error}</p>;
 
@@ -80,6 +87,7 @@ const DemoDashboard = () => {
               </div>
             ))}
       </div>
+      <button className="return-to-top" onClick={scrollToTop}>Return to Top</button>
     </div>
   );
 };
