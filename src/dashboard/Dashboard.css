@@ -9,179 +9,131 @@ body {
     justify-content: flex-start;
     align-items: center;
     padding: 0;
-  }
-  
-  .title {
+}
+
+.title {
     text-align: center;
     margin-top: 10vh;
     font-size: 2rem;
     color: #fff;
-  }
-  
-  .intro {
+}
+
+.intro {
     text-align: center;
     margin-top: 15vh;
     color: #fff;
-  }
-  
-  .categories {
+}
+
+/* Categories styling - Default Desktop version */
+.categories {
     display: flex;
-    justify-content: space-evenly;
-    width: 100%;
+    justify-content: space-evenly; 
+    width: 100%; 
     margin-top: 20px;
     padding-bottom: 20px;
     text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0);
+    position: relative; /* Removed sticky for mobile */
+    background-color: rgba(0, 0, 0, 0); 
     transition: background-color 0.3s ease;
-    height: auto;
-  }
-  
-  .categories.scrolled {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .category {
+}
+
+/* On scroll, the background will change color (only on desktop, mobile will use the normal background) */
+.categories.scrolled {
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.category {
     cursor: pointer;
     padding: 10px;
     margin: 0 10px;
     border: none;
-    transition: color 0.3s;
-    white-space: nowrap;
-  }
-  
-  .category:hover {
-    color: #ff7e5f;
-  }
-  
-  .category.selected {
-    color: #1a557f;
+    transition: color 0.3s; 
+    white-space: nowrap; /* Prevent category names from wrapping */
+}
+
+.category:hover {
+    color: #ff7e5f; 
+}
+
+.category.selected {
+    color: #1a557f; 
     font-weight: bold;
-  }
-  
-  .metrics {
+}
+
+.metrics {
     padding: 20px;
-  }
-  
-  .category-title {
+}
+
+.category-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #ADD8E6;
+    color: #ADD8E6; 
     margin-bottom: 10px;
-  }
-  
-  .metric {
-    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.metric {
+    background-color: rgba(0, 0, 0, 0.5); 
     border-radius: 10px;
     padding: 20px;
     margin: 10px 0;
     width: 80%;
     max-width: 800px;
-  }
-  
-  .metric h4 {
-    color: #ADD8E6;
+}
+
+.metric h4 {
+    color: #ADD8E6; 
     margin-top: 0;
     padding: 5px 10px;
-  }
-  
-  .progress {
-    color: gold;
-  }
-  
-  .loading,
-  .error {
+}
+
+.progress {
+    color: gold; 
+}
+
+.loading,
+.error {
     font-size: 1.2rem;
     color: gold;
     text-align: center;
     margin-top: 20px;
-  }
-  
-  .loading {
+}
+
+.loading {
     color: #ffcc00;
-  }
-  
-  .error {
+}
+
+.error {
     color: #ff0000;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .title {
-      font-size: 1.5rem;
-    }
-  
-    .intro {
-      font-size: 1rem;
-      margin-top: 10vh;
-    }
-  
+}
+
+/* Mobile-specific styles */
+@media screen and (max-width: 768px) {
     .categories {
-      flex-direction: row;
-      justify-content: space-around;  /* Display category names horizontally */
-      margin-top: 0;
-      padding-bottom: 10px;
+        flex-direction: row; /* Display categories horizontally on mobile */
+        font-size: 14px; /* Adjust the font size for mobile */
+        overflow-x: scroll; /* Allow horizontal scrolling for categories */
     }
-  
+
     .category {
-      font-size: 0.9rem;  /* Reduce font size on mobile */
-      margin: 0 8px;  /* Add more space between categories */
+        padding: 10px;
+        font-size: 12px; /* Adjust font size for mobile */
     }
-  
-    .metrics {
-      padding: 10px;
-    }
-  
-    .category-title {
-      font-size: 1.2rem;
-    }
-  
-    .metric {
-      padding: 15px;
-    }
-  
-    /* Return to top button on mobile */
+
     .return-to-top {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      display: block;
-      font-size: 14px;
-      transition: background-color 0.3s ease;
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
     }
-  
+
     .return-to-top:hover {
-      background-color: #0056b3;
+        background-color: #0056b3;
     }
-  }
-  
-  @media (max-width: 480px) {
-    .title {
-      font-size: 1.2rem;
-    }
-  
-    .category {
-      font-size: 0.8rem;
-    }
-  
-    .category-title {
-      font-size: 1rem;
-    }
-  
-    .metrics {
-      padding: 5px;
-    }
-  
-    .metric {
-      padding: 10px;
-    }
-  }
-  
+}
