@@ -29,7 +29,7 @@ const Dashboard = () => {
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
     window.scrollTo({
-      top: 0, 
+      top: document.getElementById('metrics-section').offsetTop - 50, 
       left: 0,
       behavior: 'smooth', 
     });
@@ -68,7 +68,7 @@ const Dashboard = () => {
       </div>
 
       {/* Render metrics for the selected category */}
-      <div className="metrics">
+      <div id="metrics-section"className="metrics">
         {selectedCategory &&
           metricsData
             .filter((category) => category.categoryName === selectedCategory)
