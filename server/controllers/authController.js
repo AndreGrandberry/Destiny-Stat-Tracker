@@ -62,28 +62,34 @@ export const handleOAuthCallback = async (req, res, next) => {
         const { destinyMemberships } = userResponse.data.Response;
         console.log ('Memberships: ', destinyMemberships)
 
-        const secondMembership = destinyMemberships[0];
-        console.log('secondMembership', secondMembership);
+        // const secondMembership = destinyMemberships[0];
+        // console.log('secondMembership', secondMembership);
 
      
 
 
-        const { membershipId, membershipType, crossSaveOverride } = secondMembership; // Acquire the override membershipId and crossSaveOveride from response
+        // const { membershipId, membershipType, crossSaveOverride } = secondMembership; // Acquire the override membershipId and crossSaveOveride from response
 
-        console.log('The other membership', secondMembership);
+        // console.log('The other membership', secondMembership);
 
-        console.log('initial membership type', membershipType)
+        // console.log('initial membership type', membershipType)
 
-        const membershipType2 = crossSaveOverride
-       
+        // const membershipType2 = crossSaveOverride
+        const primaryMembership = destinyMemberships.find(membership => membership.crossSaveOverride !== 0);
+        if (!primaryMembership) {
+          throw new AppError('No primary membership found', 400);
+        }
+    
+        const { membershipId, membershipType } = primaryMembership;
+    
 
         // Save user data to Redis session.
           // Membershiptype/crossaveSaveOrride are data points that represent the primary console of the user
 
-        req.session.membershipType2 = membershipType2; // Save user information into session.
+        req.session.membershipType2 = membershipType; // Save user information into session.
         req.session.membershipId = membershipId;
-        console.log(' the new membership type', membershipType2);
-        console.log('membership Id', membershipId);
+        // console.log(' the new membership type', membershipType2);
+        // console.log('membership Id', membershipId);
 
 
       
