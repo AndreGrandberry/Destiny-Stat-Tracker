@@ -65,22 +65,27 @@ export const handleOAuthCallback = async (req, res, next) => {
         const secondMembership = destinyMemberships[0];
         console.log('secondMembership', secondMembership);
 
-        const displayName = userResponse.data.Response.bungieNetUser.uniqueName
+     
 
 
-        const { membershipId, crossSaveOverride } = secondMembership; // Acquire the override membershipId and crossSaveOveride from response
+        const { membershipId, membershipType, crossSaveOverride } = secondMembership; // Acquire the override membershipId and crossSaveOveride from response
 
         console.log('The other membership', secondMembership);
 
+        console.log('initial membership type', membershipType)
 
+        const membershipType2 = crossSaveOverride
        
 
         // Save user data to Redis session.
-        const membershipType = crossSaveOverride; // Membershiptype/crossaveSaveOrride are data points that represent the primary console of the user
+         = crossSaveOverride; // Membershiptype/crossaveSaveOrride are data points that represent the primary console of the user
 
-        req.session.membershipType = membershipType; // Save user information into session.
+        req.session.membershipType2 = membershipType2; // Save user information into session.
         req.session.membershipId = membershipId;
-        req.session.displayName = displayName;
+        console.log(' the new membership type', membershipType2);
+        console.log('membership Id', membershipId);
+
+
       
         
 
