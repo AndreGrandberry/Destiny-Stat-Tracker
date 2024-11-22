@@ -78,7 +78,7 @@ export const handleOAuthCallback = async (req, res, next) => {
        
 
         // Save user data to Redis session.
-         = crossSaveOverride; // Membershiptype/crossaveSaveOrride are data points that represent the primary console of the user
+          // Membershiptype/crossaveSaveOrride are data points that represent the primary console of the user
 
         req.session.membershipType2 = membershipType2; // Save user information into session.
         req.session.membershipId = membershipId;
