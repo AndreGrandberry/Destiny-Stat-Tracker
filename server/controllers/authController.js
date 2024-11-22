@@ -75,18 +75,28 @@ export const handleOAuthCallback = async (req, res, next) => {
         // console.log('initial membership type', membershipType)
 
         // const membershipType2 = crossSaveOverride
-        const primaryMembership = destinyMemberships.find(membership => membership.crossSaveOverride !== 0);
-        if (!primaryMembership) {
-          throw new AppError('No primary membership found', 400);
+        let primaryMembership = null;
+        for (let membership of destinyMemberships) {
+            if (membership.crossSaveOverride === 1) {
+                primaryMembership = membership; // Take the overridden membership (primary)
+                break;
+            }
         }
-    
+
+        if (!primaryMembership) {
+            throw new AppError('No primary membership found', 400);
+        }
+
         const { membershipId, membershipType } = primaryMembership;
+
+        console.log('Primary membership:', primaryMembership);
+       
     
 
         // Save user data to Redis session.
           // Membershiptype/crossaveSaveOrride are data points that represent the primary console of the user
 
-        req.session.membershipType2 = membershipType; // Save user information into session.
+        req.session.membershipType = membershipType; // Save user information into session.
         req.session.membershipId = membershipId;
         // console.log(' the new membership type', membershipType2);
         // console.log('membership Id', membershipId);
