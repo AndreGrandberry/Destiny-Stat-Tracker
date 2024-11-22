@@ -62,25 +62,18 @@ export const handleOAuthCallback = async (req, res, next) => {
         const { destinyMemberships } = userResponse.data.Response;
         console.log ('Memberships: ', destinyMemberships)
 
-        // const secondMembership = destinyMemberships[0];
-        // console.log('secondMembership', secondMembership);
-
-     
-
-
-        // const { membershipId, membershipType, crossSaveOverride } = secondMembership; // Acquire the override membershipId and crossSaveOveride from response
-
-        // console.log('The other membership', secondMembership);
-
-        // console.log('initial membership type', membershipType)
-
-        // const membershipType2 = crossSaveOverride
+       
+        
         let primaryMembership = null;
         for (let membership of destinyMemberships) {
             if (membership.crossSaveOverride === 1) {
                 primaryMembership = membership; // Take the overridden membership (primary)
                 break;
             }
+        }
+
+        if (!primaryMembership) {
+            primaryMembership = destinyMemberships[0];
         }
 
         if (!primaryMembership) {
