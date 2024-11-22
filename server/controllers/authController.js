@@ -17,6 +17,7 @@ export const handleOAuthCallback = async (req, res, next) => {
     try {
         
         const { code } = req.query; // Receive the authorization code from the query params
+        console.log('This is the code code:', code)
         if (!code) {
             throw new AppError('Authorization code missing', 400);
         }
@@ -59,13 +60,17 @@ export const handleOAuthCallback = async (req, res, next) => {
 
         
         const { destinyMemberships } = userResponse.data.Response;
+        console.log ('Memberships: ', destinyMemberships)
 
         const secondMembership = destinyMemberships[0];
+        console.log('secondMembership', secondMembership);
 
         const displayName = userResponse.data.Response.bungieNetUser.uniqueName
 
 
         const { membershipId, crossSaveOverride } = secondMembership; // Acquire the override membershipId and crossSaveOveride from response
+
+        console.log('The other membership', secondMembership);
 
 
        
@@ -79,7 +84,7 @@ export const handleOAuthCallback = async (req, res, next) => {
       
         
 
-        res.redirect('https://destiny-stat-tracker.com/dashboard'); // Redirect the dashboard
+        res.redirect('https://destiny-stat-tracker.com/dashboard'); // Redirect to the dashboard
     } catch (error) {
         console.log(error)
         next(new AppError('OAuth Callback Failed', 500))
