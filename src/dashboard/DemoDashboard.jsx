@@ -38,9 +38,21 @@ const DemoDashboard = () => {
 
   const scrollToTop = () => {
     window.scrollTo({
-      top: 0,
+      top: document.getElementById('metrics-section').offsetTop - 50,
       behavior: 'smooth',
     });
+  };
+
+  // Function to group metrics by groupName
+  const groupMetricsByGroupName = (metrics) => {
+    return metrics.reduce((groups, metric) => {
+      const groupName = metric.groupName || 'Other'; // If no groupName, assign to 'Other'
+      if (!groups[groupName]) {
+        groups[groupName] = [];
+      }
+      groups[groupName].push(metric);
+      return groups;
+    }, {});
   };
 
   if (loading) return <p className="loading">Loading...</p>;
@@ -58,7 +70,7 @@ const DemoDashboard = () => {
           metricsData.map((category, index) => (
             <div
               key={index}
-              onClick={() => handleCategoryClick(category.categoryName)} // Trigger smooth scroll and category change
+              onClick={() => handleCategoryClick(category.categoryName)} // Trigger category change
               className={`category ${selectedCategory === category.categoryName ? 'selected' : ''}`}
             >
               {category.categoryName}
@@ -67,21 +79,29 @@ const DemoDashboard = () => {
       </div>
 
       {/* Render metrics for the selected category */}
-      <div id="metrics-section" className="metrics">
+      <div id='metrics-section' className="metrics">
         {selectedCategory &&
           metricsData
             .filter((category) => category.categoryName === selectedCategory)
             .map((category) => (
               <div key={category.categoryName}>
                 <h2 className="category-title">{category.categoryName}</h2>
-                {category.metrics.map((metric, idx) => (
-                  <div key={idx} className="metric">
-                    <h4>{metric.name}</h4>
-                    <p>{metric.description}</p>
-                    <p className='progress'>Progress: {metric.description.startsWith('The fastest completion')
-                    ? convertTimestamp(metric.progress) // Convert progress to timestamp
-                    : metric.progress // Otherwise, use the original progress value
-                    }</p>
+
+                {/* Group metrics by groupName and render them */}
+                {Object.keys(groupMetricsByGroupName(category.metrics)).map((groupName) => (
+                  <div key={groupName}>
+                    <h3>{groupName}</h3>
+                    {groupMetricsByGroupName(category.metrics)[groupName].map((metric, idx) => (
+                      <div key={idx} className="metric">
+                        <h4>{metric.name}</h4>
+                        <p>{metric.description}</p>
+                        <p className="progress">
+                          Progress: {metric.description.startsWith('The fastest completion')
+                            ? convertTimestamp(metric.progress)
+                            : metric.progress}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>

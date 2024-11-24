@@ -30,7 +30,7 @@ const Dashboard = () => {
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
     window.scrollTo({
-      top: document.getElementById('metrics-section2').offsetTop - 50, 
+      top: document.getElementById('metrics-section').offsetTop - 50, 
       left: 0,
       behavior: 'smooth', 
     });
@@ -50,8 +50,8 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1 className="title">Destiny Stat Tracker</h1>
-      <p className="intro">Your stats for various Destiny 2 activities pulled from Bungie's API</p>
+      <h1 className="title">Destiny Stat Tracker Demo</h1>
+      <p className="intro">This is a sample page of the Destiny Stat Tracker Dashboard</p>
       <ReturnHomeButton />
 
       {/* Category Names Displayed Evenly Across the Page */}
@@ -60,7 +60,7 @@ const Dashboard = () => {
           metricsData.map((category, index) => (
             <div
               key={index}
-              onClick={() => handleCategoryClick(category.categoryName)} // Trigger smooth scroll and category change
+              onClick={() => handleCategoryClick(category.categoryName)} // Trigger category change
               className={`category ${selectedCategory === category.categoryName ? 'selected' : ''}`}
             >
               {category.categoryName}
@@ -69,21 +69,29 @@ const Dashboard = () => {
       </div>
 
       {/* Render metrics for the selected category */}
-      <div id="metrics-section2"className="metrics">
+      <div id='metrics-section' className="metrics">
         {selectedCategory &&
           metricsData
             .filter((category) => category.categoryName === selectedCategory)
             .map((category) => (
               <div key={category.categoryName}>
                 <h2 className="category-title">{category.categoryName}</h2>
-                {category.metrics.map((metric, idx) => (
-                  <div key={idx} className="metric">
-                    <h4>{metric.name}</h4>
-                    <p>{metric.description}</p>
-                    <p className="progress">Progress: {metric.description.startsWith('The fastest completion')
-                    ? convertTimestamp(metric.progress) // Convert progress to timestamp
-                    : metric.progress // Otherwise, use the original progress value
-                    }</p>
+
+                {/* Group metrics by groupName and render them */}
+                {Object.keys(groupMetricsByGroupName(category.metrics)).map((groupName) => (
+                  <div key={groupName}>
+                    <h3>{groupName}</h3>
+                    {groupMetricsByGroupName(category.metrics)[groupName].map((metric, idx) => (
+                      <div key={idx} className="metric">
+                        <h4>{metric.name}</h4>
+                        <p>{metric.description}</p>
+                        <p className="progress">
+                          Progress: {metric.description.startsWith('The fastest completion')
+                            ? convertTimestamp(metric.progress)
+                            : metric.progress}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
