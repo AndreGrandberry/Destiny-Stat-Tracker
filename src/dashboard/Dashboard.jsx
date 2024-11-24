@@ -14,6 +14,7 @@ const Dashboard = () => {
       try {
         const response = await fetch('/api'); // Fetch the data from the /api endpoint (MongoDB)
         const data = await response.json();
+        console.log('Fetched data: ', data);
         setMetricsData(data); // Set the fetched data to state
         setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
