@@ -17,7 +17,6 @@ export const handleOAuthCallback = async (req, res, next) => {
     try {
         
         const { code } = req.query; // Receive the authorization code from the query params
-        console.log('This is the code code:', code)
         if (!code) {
             throw new AppError('Authorization code missing', 400);
         }

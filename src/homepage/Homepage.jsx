@@ -5,7 +5,6 @@ import "./Homepage.css";
 
 // Component for the Homepage
 const Homepage = () => {
-  console.log('Client ID from frontend:', import.meta.env.VITE_OAUTH_CLIENT_ID);
   const navigate = useNavigate();
 
   const handleDemoClick = () => {
@@ -22,7 +21,6 @@ const Homepage = () => {
       setLoading(true);
       // Url to initiate OAuth flow
       const authorizationUrl = `https://www.bungie.net/en/oauth/authorize?client_id=${import.meta.env.VITE_OAUTH_CLIENT_ID}&response_type=code&redirect_uri=https://destiny-stat-tracker.com/auth/callback`;
-      console.log('Redirecting to OAuth provider...', import.meta.env.VITE_OAUTH_CLIENT_ID);
       window.location.href = authorizationUrl; // Redirect user to OAuth provider
     } catch (error) {
       setError(error.message);

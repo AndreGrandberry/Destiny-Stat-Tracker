@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
     const metricsWithProgress = await getMetricsWithProgress(membershipType, membershipId, accessToken);
 
     // Send the data back to the frontend
-    console.log(metricsWithProgress);
+    
     res.status(200).json(metricsWithProgress);
   } catch (error) {
     console.error("Error in /api/ route:", error.message);
