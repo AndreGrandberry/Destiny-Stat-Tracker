@@ -71,7 +71,8 @@ export async function organizeMetricsByGroups(presentationNodes) {
             organizedMetrics[node.categoryName].push({ //Organize metrics in a JSON-like structure
                 name: metricName,
                 description: metricDescription,
-                groupName: groupName
+                groupName: groupName,
+                metricHash: metric.metricHash
             });
         }
     }

@@ -11,6 +11,7 @@ const MetricSchema = new mongoose.Schema({
           description: { type: String },
           progress: { type: Number },
           groupName: { type: String },
+          metricHash: { type: String, required: true }
         },
       ],
     },
