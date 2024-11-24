@@ -1,3 +1,13 @@
+// Controller function for the /api route
+
+import Metric from "../models/metric.js";
+import { fetchAllMetricsProgress } from "./progressController.js";
+import { fetchPresentationNodeMetrics } from "../scripts/metricsController.js";
+
+
+
+
+
 export const getMetricsWithProgress = async (membershipType, membershipId, accessToken) => {
   try {
     // Define the presentation nodes to organize categories
