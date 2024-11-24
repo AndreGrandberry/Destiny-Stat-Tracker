@@ -59,12 +59,7 @@ export const handleOAuthCallback = async (req, res, next) => {
         // Extract necessary information from the response
 
         
-        const { destinyMemberships, primaryMembershipId, bungieNetUser } = userResponse.data.Response;
-        console.log ('Memberships: ', destinyMemberships);
-        console.log('PrimaryMembershipId: ', primaryMembershipId);
-        console.log('Bungie User:', bungieNetUser);
-        console.log("Bungie User Id", bungieNetUser.membershipId);
-
+        const { destinyMemberships } = userResponse.data.Response;
        
         
         let primaryMembership = null;
@@ -85,17 +80,14 @@ export const handleOAuthCallback = async (req, res, next) => {
 
         const { membershipId, membershipType } = primaryMembership;
 
-        console.log('Primary membership:', primaryMembership);
        
     
 
         // Save user data to Redis session.
-          // Membershiptype/crossaveSaveOrride are data points that represent the primary console of the user
 
-        req.session.membershipType = membershipType; // Save user information into session.
+        req.session.membershipType = membershipType; 
         req.session.membershipId = membershipId;
-        // console.log(' the new membership type', membershipType2);
-        // console.log('membership Id', membershipId);
+        
 
 
       

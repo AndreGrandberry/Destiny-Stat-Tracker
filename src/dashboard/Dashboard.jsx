@@ -42,7 +42,7 @@ const Dashboard = () => {
       behavior: 'smooth',
     });
   };
-  
+
   const groupMetricsByGroupName = (metrics) => {
     return metrics.reduce((groups, metric) => {
       const groupName = metric.groupName || 'Other'; // If no groupName, assign to 'Other'
@@ -61,8 +61,8 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1 className="title">Destiny Stat Tracker Demo</h1>
-      <p className="intro">This is a sample page of the Destiny Stat Tracker Dashboard</p>
+      <h1 className="title">Destiny Stat Tracker</h1>
+      <p className="intro">Your stats for various Destiny 2 activities pulled from Bungie's API</p>
       <ReturnHomeButton />
 
       {/* Category Names Displayed Evenly Across the Page */}
