@@ -59,8 +59,11 @@ export const handleOAuthCallback = async (req, res, next) => {
         // Extract necessary information from the response
 
         
-        const { destinyMemberships } = userResponse.data.Response;
-        console.log ('Memberships: ', destinyMemberships)
+        const { destinyMemberships, primaryMembershipId, bungieNetUser } = userResponse.data.Response;
+        console.log ('Memberships: ', destinyMemberships);
+        console.log('PrimaryMembershipId: ', primaryMembershipId);
+        console.log('Bungie User:', bungieNetUser);
+        console.log("Bungie User Id", bungieNetUser.membershipId);
 
        
         
