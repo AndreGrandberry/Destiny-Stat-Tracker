@@ -38,7 +38,7 @@ const DemoDashboard = () => {
 
   const scrollToTop = () => {
     window.scrollTo({
-      top: document.getElementById('metrics-section').offsetTop - 50,
+      top: 0,
       behavior: 'smooth',
     });
   };
