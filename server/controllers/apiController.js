@@ -1,16 +1,6 @@
-// Controller function for the /api route
-
-import Metric from "../models/metric.js";
-import { fetchAllMetricsProgress } from "./progressController.js";
-import { fetchPresentationNodeMetrics } from "../scripts/metricsController.js";
-
-
-
-
-
 export const getMetricsWithProgress = async (membershipType, membershipId, accessToken) => {
   try {
-
+    // Define the presentation nodes to organize categories
     const presentationNodes = [
       { presentationNodeHash: '3844527950', categoryName: "Seasons" },
       { presentationNodeHash: '2875839731', categoryName: "Account" },
@@ -21,21 +11,21 @@ export const getMetricsWithProgress = async (membershipType, membershipId, acces
       { presentationNodeHash: '2755216039', categoryName: "Strikes" },
       { presentationNodeHash: '3722177789', categoryName: "Trials of Osiris" }
     ];
-    
+
     // Array to store the metric hashes
     let metricHashes = [];
     
+    // Fetching the metric hashes from Bungie's API for each category
     for (const node of presentationNodes) {
-      const nodeHash = node.presentationNodeHash; // Take the NodeHash of the category
+      const nodeHash = node.presentationNodeHash;
       const nodeData = await fetchPresentationNodeMetrics(nodeHash, accessToken);
     
-      // Iterate through the metrics and store the metricHash in the array
+      // Store the metricHashes for each category
       for (const metric of nodeData) {
-        metricHashes.push(metric.metricHash);  // Store the metricHash in the array
+        metricHashes.push({ metricHash: metric.metricHash, categoryName: node.categoryName });
       }
     }
     
-
     // Fetch metrics data from the database
     const metricsData = await Metric.findOne().maxTimeMS(20000);
     if (!metricsData) {
@@ -44,30 +34,29 @@ export const getMetricsWithProgress = async (membershipType, membershipId, acces
 
     const { categories } = metricsData.toObject();
 
-    //  Fetch all progress from Bungie API
+    // Fetch the progress data from Bungie API
     const progressData = await fetchAllMetricsProgress(membershipType, membershipId, accessToken);
 
-    // Add progress to the metrics dynamically
+    // Map the metrics data with the corresponding progress data
     const updatedCategories = categories.map((category) => ({
       categoryName: category.categoryName,
-      metrics: category.metrics.map((met, index) => {
-        // Get the metricHash from the metricHashes array by index
-        const metricHash = metricHashes[index];  // Assuming each metric corresponds to one metricHash
-    
-        // Retrieve the progress data using the metricHash from progressData
-        const progress = progressData[metricHash]?.objectiveProgress?.progress || 0;
-    
-        // Return the updated metric with progress
+      metrics: category.metrics.map((met) => {
+        // Find the corresponding metricHash for the metric from the category
+        const matchedMetricHash = metricHashes.find((m) => m.categoryName === category.categoryName);
+
+        // Get the progress data using the metricHash
+        const progress = progressData[matchedMetricHash?.metricHash]?.objectiveProgress?.progress || 0;
+
         return {
           ...met,
-          progress: progress, // Update progress field
+          progress: progress, // Add the progress to the metric
         };
       }),
     }));
 
-    return updatedCategories; // Ready for the frontend
+    return updatedCategories; // Return the updated categories with progress
   } catch (error) {
-
+    console.error(error);
     throw error;
   }
 };
