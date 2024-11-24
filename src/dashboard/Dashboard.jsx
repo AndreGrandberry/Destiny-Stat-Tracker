@@ -42,6 +42,17 @@ const Dashboard = () => {
       behavior: 'smooth',
     });
   };
+  
+  const groupMetricsByGroupName = (metrics) => {
+    return metrics.reduce((groups, metric) => {
+      const groupName = metric.groupName || 'Other'; // If no groupName, assign to 'Other'
+      if (!groups[groupName]) {
+        groups[groupName] = [];
+      }
+      groups[groupName].push(metric);
+      return groups;
+    }, {});
+  };
 
   
 
