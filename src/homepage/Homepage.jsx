@@ -35,7 +35,7 @@ const Homepage = () => {
     <div className="homepage-container">
       <h1 className="homepage-title">Welcome to The Destiny 2 Stat Tracker</h1>
       <p className="homepage-description">
-        Click the button below to give us permission to authorize with Bungie to acces your Bungie.net information.
+        Click the button below to give us permission to authorize with Bungie to access your Bungie.net information.
       </p>
       <button className="homepage-button" onClick={handleOAuthButtonClick} disabled={loading}>
         {loading ? 'Loading...' : 'Log in with your Bungie.net account'}
