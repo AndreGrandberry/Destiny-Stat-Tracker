@@ -96,7 +96,7 @@ const Dashboard = () => {
                         <h4>{metric.name}</h4>
                         <p>{metric.description}</p>
                         <p className="progress">
-                          Progress: {metric.description.startsWith('The fastest completion')
+                          Progress: {metric.description.startsWith('The fastest')
                             ? convertTimestamp(metric.progress)
                             : metric.progress}
                         </p>
