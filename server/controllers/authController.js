@@ -79,18 +79,10 @@ export const handleOAuthCallback = async (req, res, next) => {
 
         const { membershipId, membershipType } = primaryMembership;
 
-       
-    
-
         // Save user data to Redis session.
 
         req.session.membershipType = membershipType; 
         req.session.membershipId = membershipId;
-        
-
-
-      
-        
 
         res.redirect('https://destiny-stat-tracker.com/dashboard'); // Redirect to the dashboard
     } catch (error) {
